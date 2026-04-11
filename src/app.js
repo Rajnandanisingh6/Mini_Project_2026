@@ -80,7 +80,7 @@ app.use(cors());
 
 // Signup
 
-app.post("/signup", async (req, res) => {
+app.post("/api/signup", async (req, res) => {
 
 const {name,email,password} = req.body;
 
@@ -102,7 +102,7 @@ message:"User created successfully"
 
 // Login
 
-app.post("/login", async (req, res) => {
+app.post("/api/login", async (req, res) => {
 
 const {email,password} = req.body;
 
@@ -146,7 +146,7 @@ token
 
 // Create Task
 
-app.post("/tasks", auth, async (req, res) => {
+app.post("/api/tasks", auth, async (req, res) => {
 
 const data = req.body;
 
@@ -170,7 +170,7 @@ message: "Task created successfully"
 
 // Get Tasks
 
-app.get("/tasks", auth, async (req, res) => {
+app.get("/api/tasks", auth, async (req, res) => {
 
 const tasks = await taskModel.find({
 user:req.user.id
