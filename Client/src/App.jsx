@@ -1,9 +1,11 @@
 import React, { useMemo, useState } from "react";
+import axios from "axios";
 import TaskForm from "./components/TaskForm.jsx";
 import TaskList from "./components/TaskList.jsx";
 import ReminderPanel from "./components/ReminderPanel.jsx";
 import Dashboard from "./components/Dashboard.jsx";
 import Login from "./components/Login.jsx";
+
 
 const initialTasks = [
   {
@@ -43,9 +45,29 @@ function App() {
   const [activeTab, setActiveTab] = useState("tasks");
   const [user, setUser] = useState(null);
 
-  if (!user) return <Login onLogin={(name) => setUser(name)} />;
+  
 
-  const addTask = (task) => setTasks([task, ...tasks]);
+  const addTask = async (task) => {
+  try {
+
+    const token = localStorage.getItem("token");
+
+    await axios.post(
+      "http://localhost:3000/tasks",
+      task,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    );
+
+    setTasks([task, ...tasks]);
+
+  } catch (error) {
+    console.log("Error adding task", error);
+  }
+};
 
   const updateProgress = (id, value) =>
     setTasks(tasks.map((t) => (t.id === id ? { ...t, progress: Number(value) } : t)));
@@ -78,7 +100,12 @@ function App() {
     .sort((a, b) => a.daysLeft - b.daysLeft);
 
   return (
-    <div className="app">
+   
+<>
+{!user ? (
+  <Login onLogin={(name) => setUser(name)} />
+) : (
+<div className="app">
       <header className="header">
         <div className="header-content">
           <div className="header-brand">
@@ -131,6 +158,8 @@ function App() {
         )}
       </main>
     </div>
+)}
+</>
   );
 }
 

@@ -28,9 +28,16 @@ function Login({ onLogin }) {
       const response = await axios.post(endpoint, form);
 
       if (response.status === 200 || response.status === 201) {
-        alert(isSignup ? "🚀 Signup Successful!" : "🔑 Login Successful!");
-        onLogin(form.name || form.email.split("@")[0]);
-      }
+     alert(isSignup ? "🚀 Signup Successful!" : "🔑 Login Successful!");
+
+     localStorage.setItem("token", response.data.token); // Agar token mile backend se, toh store kar lo
+
+    setTimeout(() => {
+    onLogin(form.name || form.email.split("@")[0]);
+  }, 100);
+}
+
+
     } catch (err) {
       // Agar backend band ho ya error aaye
       console.error("Error:", err);

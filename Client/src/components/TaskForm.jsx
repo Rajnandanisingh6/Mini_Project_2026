@@ -26,7 +26,7 @@ function TaskForm({ addTask, onDone, prefill, editTask }) {
     if (isEdit) {
       editTask({ ...form });
     } else {
-      addTask({ id: Date.now(), ...form, progress: 0 });
+      addTask({ ...form, progress: "pending" });
     }
     setForm(empty);
     if (onDone) onDone();

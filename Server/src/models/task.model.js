@@ -16,7 +16,7 @@ const taskSchema = new mongoose.Schema({
     },
 
     reminder: {
-        type: Date
+        type: String,
     },
 
     progress: {

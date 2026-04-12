@@ -154,9 +154,9 @@ await taskModel.create({
 
 title: data.title,
 description: data.description,
-deadline: data.deadline,
-reminder: data.reminder,
-user:req.user.id
+deadline: data.deadline ,
+reminder: data.reminder ,
+user:req.user.id 
 
 })
 
@@ -173,7 +173,7 @@ message: "Task created successfully"
 app.get("/tasks", auth, async (req, res) => {
 
 const tasks = await taskModel.find({
-user:req.user.id
+user:req.user.id 
 });
 
 res.status(200).json({
