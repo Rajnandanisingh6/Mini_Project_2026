@@ -22,8 +22,8 @@ function Login({ onLogin }) {
     try {
       // Backend connection points
       const endpoint = isSignup 
-        ? "http://localhost:3000/signup" 
-        : "http://localhost:3000/login";
+        ? "https://mini-project-2026-1.onrender.com" 
+        : "https://mini-project-2026-1.onrender.com";
       
       const response = await axios.post(endpoint, form);
 
