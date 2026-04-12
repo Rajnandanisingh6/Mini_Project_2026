@@ -231,3 +231,13 @@ message: "Task updated successfully"
 
 
 module.exports = app;
+
+const path = require("path");
+
+// Serve frontend
+app.use(express.static(path.join(__dirname, "../client/dist")));
+
+// React/Vite routing fix
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
+});
