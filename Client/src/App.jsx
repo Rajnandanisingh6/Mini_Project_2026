@@ -53,7 +53,7 @@ function App() {
     const token = localStorage.getItem("token");
 
     await axios.post(
-      "https://mini-project-2026-ldn2.onrender.com",
+      "https://mini-project-2026-1.onrender.com",
       task,
       {
         headers: {
