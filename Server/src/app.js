@@ -190,15 +190,24 @@ data: tasks
 // Delete Task
 
 app.delete("/tasks/:id", auth, async (req, res) => {
+  try {
+    const id = req.params.id;
 
-const id = req.params.id;
+    await taskModel.findOneAndDelete({
+      _id: id,
+      user: req.user.id
+    });
 
-await taskModel.findByIdAndDelete(id);
+    res.status(200).json({
+      message: "Task deleted successfully"
+    });
 
-res.status(200).json({
-message: "Task deleted successfully"
-})
-
+  } catch (error) {
+    res.status(500).json({
+      message: "Delete failed",
+      error: error.message
+    });
+  }
 });
 
 
