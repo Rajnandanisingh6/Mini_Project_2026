@@ -7,7 +7,7 @@ import Dashboard from "./components/Dashboard.jsx";
 import Login from "./components/Login.jsx";
 
 
-const initialTasks = [
+/*const initialTasks = [
   {
     id: 1,
     title: "Complete DAA Assignment",
@@ -38,10 +38,11 @@ const initialTasks = [
     progress: 0,
     reminder: "2 days before",
   },
-];
+];*/
+
 
 function App() {
-  const [tasks, setTasks] = useState(initialTasks);
+  const [tasks, setTasks] = useState([]);
   const [activeTab, setActiveTab] = useState("tasks");
   const [user, setUser] = useState(null);
 
