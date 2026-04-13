@@ -30,7 +30,7 @@ function TaskCard({ task, daysLeft, updateProgress, deleteTask, onEdit }) {
         </div>
         <div className="card-actions">
           <button className="btn-icon edit" onClick={onEdit} title="Edit">✏️</button>
-          <button className="btn-icon del" onClick={() => deleteTask(task.id)} title="Delete">🗑️</button>
+          <button className="btn-icon del" onClick={() => deleteTask(task._id)} title="Delete">🗑️</button>
         </div>
       </div>
 
@@ -60,7 +60,7 @@ function TaskCard({ task, daysLeft, updateProgress, deleteTask, onEdit }) {
             max="100"
             step="5"
             value={task.progress}
-            onChange={(e) => updateProgress(task.id, e.target.value)}
+            onChange={(e) => updateProgress(task._id, e.target.value)}
             className="progress-slider"
           />
         </div>

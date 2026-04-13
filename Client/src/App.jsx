@@ -72,7 +72,24 @@ function App() {
   const updateProgress = (id, value) =>
     setTasks(tasks.map((t) => (t.id === id ? { ...t, progress: Number(value) } : t)));
 
-  const deleteTask = (id) => setTasks(tasks.filter((t) => t.id !== id));
+  const deleteTask = async (id) => {
+  try {
+    const token = localStorage.getItem("token");
+
+    await axios.delete(
+      `https://mini-project-2026-1.onrender.com/tasks/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    setTasks(tasks.filter((t) => t._id !== id));
+  } catch (error) {
+    console.log("Delete error", error);
+  }
+};
 
   const editTask = (updated) =>
     setTasks(tasks.map((t) => (t.id === updated.id ? updated : t)));
