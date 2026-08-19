@@ -1,5 +1,5 @@
 require('dotenv').config();
-
+//entry point file
 const app = require('./src/app');
 const connectDB = require('./src/db/db');
 
